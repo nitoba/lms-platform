@@ -21,5 +21,7 @@ export const appearance: ComponentProps<typeof ClerkProvider>['appearance'] = {
       'bg-primary dark:bg-primary-foreground focus-visible:outline-none disabled:opacity-50 hover:bg-primary/90 dark:hover:bg-primary-foreground/90',
     formFieldLabel: 'text-muted-foreground',
     formFieldInput: 'bg-transparent border border-input dark:text-primary',
+    formFieldAction:
+      'text-primary hover:text-primary/80 transition-all duration-300',
   },
 }
