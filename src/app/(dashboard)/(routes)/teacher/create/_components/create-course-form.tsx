@@ -33,11 +33,12 @@ export function CreateCourseForm() {
 
   async function onSubmit(form: CreateCourseSchema) {
     try {
-      const response = await axios.post('/api/course', { title: form.title })
-      router.replace(`/teacher/courses/${response.data.id}`)
+      const { data } = await axios.post('/api/courses', { title: form.title })
+      router.replace(`/teacher/courses/${data.courseId}`)
+      toast.success(data.message, { position: 'bottom-right' })
     } catch (error) {
       if (error instanceof AxiosError) {
-        toast.error(`'Something went wrong:' ${error.response?.data}`, {
+        toast.error(`'Something went wrong:' ${error.response?.data.message}`, {
           position: 'bottom-right',
         })
         console.log('Something went wrong:', error.message)
@@ -79,7 +80,7 @@ export function CreateCourseForm() {
             {isSubmitting ? (
               <>
                 Creating...
-                <Loader2 className="ml-2 h-4 w-4" />
+                <Loader2 className="ml-2 h-4 w-4 animate-spin" />
               </>
             ) : (
               'Create'
